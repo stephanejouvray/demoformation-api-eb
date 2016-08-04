@@ -54,7 +54,7 @@
 
     <target name="drop-db">
         <echo file="./data/db/drop.sql">DROP DATABASE IF EXISTS `${db.dbname}`;</echo>
-        <pdosqlexec url="mysql:host=${db.host}" userid="root">
+	<pdosqlexec url="mysql:host=${db.host}" userid="${db.username}">
             <transaction src="./data/db/drop.sql"/>
         </pdosqlexec>
 
@@ -70,7 +70,7 @@
             `${db.dbname}`.* TO '${db.username}'@'%';
         </echo>
 
-        <pdosqlexec url="mysql:host=${db.host}" userid="root">
+	<pdosqlexec url="mysql:host=${db.host}" userid="${db.username}">
             <transaction src="${project.basedir}/data/db/create.sql"/>
         </pdosqlexec>
 
